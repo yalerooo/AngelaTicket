@@ -1,0 +1,87 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+.ticket-container {
+    perspective: 1000px;
+    touch-action: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(90deg); /* Inicialmente sin rotación */
+}
+
+.ticket-card {
+    width: 600px;
+    max-width: 600px;
+    height: 300px;
+    max-height: 300px;
+    position: relative;
+    transition: none;
+    transform-style: preserve-3d;
+    cursor: grab;
+    transform: rotateY(0deg);
+}
+
+.ticket-card:active {
+    cursor: grabbing;
+}
+
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.front {
+    background-color: white;
+    z-index: 2;
+}
+
+.back {
+    background-color: white;
+    transform: rotateY(180deg);
+}
+
+.front img, .back img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.qr-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.qr-overlay {
+    position: absolute;
+     top: 10%;
+    left: 80%;
+    width: 20%;
+    height: 40%;
+}
+
+/* Media query para vista horizontal */
+@media (orientation: landscape) {
+    .ticket-container {
+        transform: rotate(0deg);  /* Rota la pantalla 90 grados */
+    }
+   .ticket-card {
+        width: 400px;
+        max-width: 400px;
+        height: 200px;
+        max-height: 200px;
+    }
+}
